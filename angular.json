@@ -24,7 +24,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ingresoRegresoApp"
+    }
+  },
+  "defaultProject": "ingresoRegresoApp",
+  "cli": {
+    "analytics": "933b2c34-81ec-4c93-b736-cb878c4978bc"
+  }
 }
