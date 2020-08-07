@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EstadisticaComponent } from './components/ingreso-egreso/estadistica/estadistica.component';
 import { IngresoEgresoComponent } from './components/ingreso-egreso/ingreso-egreso.component';
 import { DetalleComponent } from './components/ingreso-egreso/detalle/detalle.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: '', component: EstadisticaComponent },
       { path: 'ingreso-egreso', component: IngresoEgresoComponent },
       { path: 'detalle', component: DetalleComponent }
-    ]
+    ],
+    canActivate: [ AuthGuard] 
   },
   { path: '**', redirectTo: ''}
 
