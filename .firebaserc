@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ingreso-regreso-app": {
+      "hosting": {
+        "ingresoRegresoApp": [
+          "ingreso-regreso-app"
+        ]
+      }
+    }
+  }
+}
