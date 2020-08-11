@@ -23,12 +23,14 @@ export class AuthService {
   }
 
   crearUsuario(nombre:string, email:string, password: string) {
-   return this.auth.createUserWithEmailAndPassword(email,password).then(
+   return this.auth.createUserWithEmailAndPassword(email,password)
+   .then(
      fbUser => {
        const newUser = new Usuario(fbUser.user.uid, nombre, email);
 
        return this.firestore.doc(`${ fbUser.user.uid }/usuario`)
-       .set( newUser );
+       .set( {...newUser} );
+       
 
      }
    );
