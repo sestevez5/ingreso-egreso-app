@@ -6,15 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 //Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { IngresoEgresoComponent } from './components/ingreso-egreso/ingreso-egreso.component';
 import { EstadisticaComponent } from './components/ingreso-egreso/estadistica/estadistica.component';
 import { DetalleComponent } from './components/ingreso-egreso/detalle/detalle.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
+
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -34,24 +30,25 @@ import { OrdeningresoPipe } from './pipes/ordeningreso.pipe';
 import { ChartsModule } from 'ng2-charts';
 
 
+// Módulos
+import { AuthModule } from './components/auth/auth.module';
+import { SharedModule } from './components/shared/shared.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     DashboardComponent,
     IngresoEgresoComponent,
     EstadisticaComponent,
     DetalleComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
     OrdeningresoPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AuthModule,
+    SharedModule,
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),

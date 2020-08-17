@@ -49,7 +49,6 @@ export class IngresoEgresoService {
   {
     const uidUsuario = this.authService.currentUser.uid;
     const cadena = `${ uidUsuario }/ingresos-egresos/movimientos/${ uidItem }`;
-    console.log(cadena);
     return this.firestore.doc(cadena).delete();
   }
 }

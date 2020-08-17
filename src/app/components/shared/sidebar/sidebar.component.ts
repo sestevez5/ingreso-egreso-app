@@ -31,7 +31,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
       )
       .subscribe( user =>
         {
-          console.log('sakjfhask: ',user.user)
           this.nameUser = user.user.nombre;
         })
   }

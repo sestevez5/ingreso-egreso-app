@@ -30,16 +30,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         user =>
         {
 
-          console.log('He entrado');
           
           if (!user.user) {
             this.store.dispatch(ingresoEgresoActions.unsetItems());
-            console.log('no hay usuario');
 
           }
           else
           {
-            console.log('nuevo usuraio: ', user);
             this.ingresossRegresosSub = this.ingresoEgresoService.initIngresosEgresosListener(user.user.uid)
             .subscribe(
               ingresosegresosfb => 
