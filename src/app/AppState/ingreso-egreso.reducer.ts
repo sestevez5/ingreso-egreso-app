@@ -16,11 +16,18 @@ const _ingresoEgresoReducer = createReducer(
     on(
         ingresoRegresoActions.setItems,
         (state, { items }) => ( { ...state, items: [...items]})
-    )
+    ),
+
+    on(
+        ingresoRegresoActions.unsetItems,
+        (state) => ( { ...state, items: []})
+    ),
+
+
 
 
 ); // Fin _ingresoEgresoReducer
        
-export function authReducer(state, action) {
+export function ingresoEgresoReducer(state, action) {
     return _ingresoEgresoReducer(state, action);
 }

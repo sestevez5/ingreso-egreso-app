@@ -29,6 +29,11 @@ import { appReducers } from './AppState/app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from 'src/environments/environment';
+import { OrdeningresoPipe } from './pipes/ordeningreso.pipe';
+
+import { ChartsModule } from 'ng2-charts';
+
+
 
 @NgModule({
   declarations: [
@@ -41,7 +46,8 @@ import { environment } from 'src/environments/environment';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrdeningresoPipe
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,8 @@ import { environment } from 'src/environments/environment';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
-    })
+    }),
+    ChartsModule
 
   ],
   providers: [],

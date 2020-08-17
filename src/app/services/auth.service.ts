@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
+
+//Firestore
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map } from 'rxjs/operators';
-import { Usuario } from '../models/usuario.model';
 import { AngularFirestore } from '@angular/fire/firestore';
+
+//rxjs
+import { map } from 'rxjs/operators';
+
+//ngrx
 import { Store } from '@ngrx/store';
 import { AppState } from '../AppState/app.reducer';
 import * as authActions from '../AppState/auth.actions';
 import { Subscription } from 'rxjs';
 
+//app
+import { Usuario } from '../models/usuario.model';
+import { unsetItems } from '../AppState/ingreso-egreso.actions';
 
 
 @Injectable({
@@ -16,21 +24,24 @@ import { Subscription } from 'rxjs';
 export class AuthService {
 
   userSubscription: Subscription;
-  private _currentUser: Usuario;
+  private _currentUser: Usuario;  //Representa el usuario que está conectado en la aplicación. Null, si no hay usuario conectado.
 
   get currentUser() {
     return this._currentUser;
   }
 
-  constructor(private auth: AngularFireAuth,
+  constructor(  private auth: AngularFireAuth,
               private firestore: AngularFirestore,
-              private store: Store<AppState>) { }
+                private store: Store<AppState>) { }
 
+              
   initAuthListener() {
+
     this.auth.authState.subscribe(
       fuser => {
       
-        if (fuser) {
+        if (fuser) 
+        {
           this.userSubscription =  this.firestore.doc(`${ fuser.uid }/usuario`).valueChanges()
           .subscribe(
 
@@ -38,16 +49,19 @@ export class AuthService {
            
               const user = Usuario.fromFirebase(firestoreUser);
               this._currentUser = user;
-              this.store.dispatch( authActions.setUser( { user }))
+              this.store.dispatch( authActions.setUser( { user }));
+        
 
             }
           )
-         //this.store.dispatch(authActions.setUser({ user: { }}));
+         
         }
         else {
-          this.userSubscription.unsubscribe();
+
+          if(this.userSubscription) this.userSubscription.unsubscribe();
           this._currentUser = null;
           this.store.dispatch( authActions.unSetUser());
+          this.store.dispatch( unsetItems());
 
         } // Fin if
 
@@ -77,6 +91,7 @@ export class AuthService {
 
   logout() {
     return this.auth.signOut();
+    
   }
 
   isAuth() {
