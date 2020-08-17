@@ -15,7 +15,7 @@ import { filter } from 'rxjs/operators';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 
-  currentUser: Usuario;
+  nameUser: string;
 
   currentUserSub: Subscription;
 
@@ -31,8 +31,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
       )
       .subscribe( user =>
         {
-          
-          this.currentUser = user.user;
+          console.log('sakjfhask: ',user.user)
+          this.nameUser = user.user.nombre;
         })
   }
 
